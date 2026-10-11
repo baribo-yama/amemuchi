@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gemini Chat</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <h1>Gemini Chat</h1>
+        <button id="new-chat" type="button" class="ghost">新しい会話</button>
+      </header>
+
+      <main id="messages" class="messages" aria-live="polite"></main>
+
+      <form id="form" class="composer">
+        <textarea
+          id="input"
+          rows="1"
+          placeholder="メッセージを入力(Enterで送信 / Shift+Enterで改行)"
+          autofocus
+        ></textarea>
+        <button id="send" type="submit">送信</button>
+        <button id="stop" type="button" class="danger" hidden>停止</button>
+      </form>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
