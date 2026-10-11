@@ -6,7 +6,7 @@ Gemini API を使ったシンプルなチャットアプリです。
 
 ## セットアップ
 
-node.jsのインストール（もしnode.js入ってない場合）
+node.jsのインストール（node.js入ってない場合）
 https://nodejs.org/ja/download
 ここでインストール
 
@@ -15,7 +15,10 @@ https://nodejs.org/ja/download
 node -v
 ```
 
+nodeが入ったらやること
+
 ```bash
+cd ./gemini-chat         # package.jsonがある階層に移動する
 npm install
 cp .env.example .env     # .env を開いて GEMINI_API_KEY を設定
 npm start                # → http://localhost:3000
