@@ -36,6 +36,7 @@ body {
   color: var(--text);
   font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
   line-height: 1.6;
+  background: rgb(255,248,241);
 }
 
 .app {
@@ -53,6 +54,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
+  padding-inline: 20px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -169,4 +171,52 @@ button.danger {
 
 [hidden] {
   display: none !important;
+}
+
+.lead{
+  font-size: 57px;
+  font-weight: 700;
+  margin-top: 4%;
+  margin-bottom: 0%;
+  padding-inline: 20px;
+  font-family: "Zen Maru Gothic", sans-serif;
+}
+
+.down{
+  color: var(--muted);
+  font-size: 17px;
+  padding-inline: 20px;
+}
+
+.explanation{
+  display: flex;
+  gap: 20px;
+  font-family: "Zen Maru Gothic", sans-serif;
+  padding-inline: 20px;
+}
+
+.card{
+  flex: 1;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+  padding: 30px;
+  border-radius: 18px;
+}
+
+.ame{
+  color: rgb(122, 46, 46);
+  background: rgb(255,227,244);
+}
+
+.muchi{
+  color: rgb(68, 68, 185);
+  background: rgb(228,227,247);
+}
+
+.note{
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-top: 9px;
 }
