@@ -3,18 +3,32 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gemini Chat</title>
+    <title>Amemuchi chat</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&display=swap">
   </head>
   <body>
     <div class="app">
       <header class="header">
-        <h1>Gemini Chat</h1>
-        <button id="new-chat" type="button" class="ghost">新しい会話</button>
+        <h1>Amemuchi Chat</h1>
+        <button id="new-chat" type="button" class="ghost">新規チャット</button>
       </header>
 
-      <main id="messages" class="messages" aria-live="polite"></main>
+      <p class="lead">今日のあなたを<br>褒めて、叱ります。</p>
 
+      <p class="down">いま思っていることを書いてください。甘く、ときに厳しく、返事をします</p>
+
+      <section class="explanation">
+        <div class="card ame">あめ
+          <p class="note">がんばりを認めて、背中を押す。</p>
+        </div>
+
+        <div class="card muchi">むち
+          <p class="note">甘えを見逃さず、ビシッと<br>指摘する。</p>
+        </div>
+      </section>
+
+      <label for="form">メッセージ</label>
       <form id="form" class="composer">
         <textarea
           id="input"
@@ -23,7 +37,6 @@
           autofocus
         ></textarea>
         <button id="send" type="submit">送信</button>
-        <button id="stop" type="button" class="danger" hidden>停止</button>
       </form>
     </div>
 

@@ -1,50 +1,181 @@
-body {
 
-    margin: 0;
-    padding: 0;
-
-}
-
-
-/* 全体 */
-.card {
-   display: grid;
-   grid-template-columns: 50% 50%;
-   gap: 20px;
-   
-    width: 100%;
-    min-height: 100vh;
+/* ===== 全体の設定 ===== */
+* {
     box-sizing: border-box;
-
-
-    border: 2px solid #888;
-    padding: 20px;
 }
 
-/* 左側 */
-.card-left {
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 20px;
+
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+
+    font-family: "Noto Sans JP", sans-serif;
+    color: #5D514D;
+
+    background-color: #FAF7F2;
 }
+
+
+/* ===== カード全体 ===== */
+.card {
+    width: 100%;
+    max-width: 850px;
+    min-height: 400px;
+
+    display: flex;
+    align-items: stretch;
+    gap: 32px;
+
+    padding: 36px;
+
+    background-color: #FFFFFF;
+    border: 1px solid #F0E6DE;
+    border-radius: 24px;
+
+    box-shadow: 0 8px 30px rgba(120, 95, 80, 0.07);
+}
+
+
+/* ===== 左側：タイトルとキャラクター ===== */
+.card-left {
+    flex: 0 0 40%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px 20px;
+
+    background-color: #F8EDE8;
+    border-radius: 18px;
+}
+
 
 /* タイトル */
 .card-title {
-    margin: 0;
-    font-size: 28px;
+    margin: 0 0 24px;
+
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.6;
+
+    color: #8D6E63;
 }
+
 
 /* キャラクター画像 */
 .card-character {
-    width: 140px;
-    height: 140px;
+    display: block;
+
+    width: 100%;
+    max-width: 220px;
+    height: 240px;
+
     object-fit: contain;
-    align-self: center;
 }
 
-/* 説明文 */
+
+/* ===== 右側：説明文 ===== */
 .card-description {
-    border-left: 1px solid #ccc;
-    padding-left: 20px;
-    line-height: 1.8;
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    padding: 24px 8px;
+}
+
+
+/* 説明文 */
+#output {
+    width: 100%;
+    margin: 0;
+
+    font-size: 16px;
+    line-height: 2.1;
+    letter-spacing: 0.04em;
+
+    color: #665A55;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ===== 入力画面に戻るリンク ===== */
+a {
+    display: inline-block;
+
+    padding: 12px 28px;
+
+    color: #8D6E63;
+    background-color: #F1E5DC;
+
+    border: 1px solid #E9D8CC;
+    border-radius: 30px;
+
+    font-size: 14px;
+    text-decoration: none;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* マウスを乗せたとき */
+a:hover {
+    background-color: #E8D5C8;
+    transform: translateY(-2px);
+}
+
+
+/* ===== スマートフォン対応 ===== */
+@media (max-width: 600px) {
+
+    body {
+        padding: 24px 16px;
+    }
+
+    .card {
+        flex-direction: column;
+        gap: 20px;
+
+        min-height: auto;
+        padding: 20px;
+
+        border-radius: 20px;
+    }
+
+    .card-left {
+        flex: auto;
+        padding: 24px 16px;
+    }
+
+    .card-title {
+        margin-bottom: 16px;
+        font-size: 20px;
+    }
+
+    .card-character {
+        max-width: 180px;
+        height: 200px;
+    }
+
+    .card-description {
+        padding: 12px 4px;
+    }
+
+    #output {
+        font-size: 15px;
+        line-height: 1.9;
+    }
 }
