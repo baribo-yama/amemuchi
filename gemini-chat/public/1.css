@@ -179,3 +179,8 @@ a:hover {
         line-height: 1.9;
     }
 }
+.card-character {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+}
