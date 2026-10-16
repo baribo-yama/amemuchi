@@ -16,6 +16,11 @@ if (last?.role === "user") {
 
 async function run() {
   let reply = "";
+  // 最初の delta が届くまで「。」を 1〜3 個で循環表示
+  let dots = 0;
+  const tick = () => (output.textContent = "回答を生成中" + "。".repeat((dots++ % 3) + 1));
+  tick();
+  const timer = setInterval(tick, 500);
   try {
     const res = await fetch("/api/chat", {
       method: "POST",
@@ -28,6 +33,7 @@ async function run() {
     }
     for await (const event of readEvents(res.body)) {
       if (event.type === "delta") {
+        clearInterval(timer);
         reply += event.text;
         output.textContent = reply;
       } else if (event.type === "error") {
@@ -36,6 +42,8 @@ async function run() {
     }
   } catch (err) {
     output.textContent = err.message;
+  } finally {
+    clearInterval(timer);
   }
   if (reply) {
     state.messages.push({ role: "assistant", content: reply });
