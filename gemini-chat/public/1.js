@@ -54,6 +54,7 @@ async function run() {
 
 
 
+
 const characters = [
     "./あめむち.png",
     "./あめむち2.png"
@@ -63,7 +64,7 @@ const characterImage = document.getElementById("characterImage");
 
 if (characterImage) {
     const randomIndex = Math.floor(Math.random() * characters.length);
+    console.log(randomIndex);
     characterImage.src = characters[randomIndex];
-} else {
-    console.error("画像が見つからないよ！ HTMLに id=\"characterImage\" があるか確認してね。");
 }
+
