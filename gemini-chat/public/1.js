@@ -52,14 +52,18 @@ async function run() {
 }
 
 
+
+
 const characters = [
-    "あめむち.png",
-    "毒舌デビルの現実説教スタンプ.png"
+    "./あめむち.png",
+    "./あめむち2.png"
 ];
 
-// 画像をランダムに選ぶ
-const randomIndex = Math.floor(Math.random() * characters.length);
-
-// 選んだ画像を表示する
 const characterImage = document.getElementById("characterImage");
-characterImage.src = characters[randomIndex];
+
+if (characterImage) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    characterImage.src = characters[randomIndex];
+} else {
+    console.error("画像が見つからないよ！ HTMLに id=\"characterImage\" があるか確認してね。");
+}
