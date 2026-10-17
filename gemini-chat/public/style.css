@@ -19,6 +19,10 @@
     --border: #2b303a;
     --assistant: #262b34;
   }
+
+  .head {
+    filter: invert(1);
+  }
 }
 
 * {
@@ -123,19 +127,19 @@ body {
   display: flex;
   gap: 8px;
   padding: 12px 16px;
-  border-top: 1px solid var(--border);
+  flex-direction: column;
 }
 
 textarea {
   flex: 1;
   resize: none;
   max-height: 160px;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
+  padding: 12px 16px;
+  border: 1.5px solid #CFC6BC;
   border-radius: 10px;
-  background: var(--bg);
   color: var(--text);
   font: inherit;
+  background: white;
 }
 
 textarea:focus {
@@ -178,7 +182,6 @@ button.danger {
   font-weight: 700;
   margin-top: 4%;
   margin-bottom: 0%;
-  padding-inline: 20px;
   font-family: "Zen Maru Gothic", sans-serif;
 }
 
@@ -219,4 +222,37 @@ button.danger {
   font-weight: 400;
   margin-bottom: 0;
   margin-top: 9px;
+}
+
+.send {
+  display: flex;
+  justify-content: space-between;
+}
+
+label {
+  padding-inline: 20px;
+  margin-top: 20px;
+}
+
+.message {
+  color: var(--muted);
+  margin-top: 15px;
+}
+
+#send {
+  background: #3D3A8C;
+  border-radius: 36px;
+  font-size: 19px;
+  font-weight: 700;
+  padding: 12px 40px;
+}
+
+.head {
+  width: 200px;
+}
+
+.muchi-face {
+  display: flex;
+  align-items: center;
+  padding-inline: 20px;
 }

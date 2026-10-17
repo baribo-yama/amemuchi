@@ -14,7 +14,10 @@
         <button id="new-chat" type="button" class="ghost">新規チャット</button>
       </header>
 
-      <p class="lead">今日のあなたを<br>褒めて、叱ります。</p>
+      <div class="muchi-face">
+        <p class="lead">今日のあなたを<br>褒めて、叱ります。</p>
+        <img class="head" src="muchimuchi-face.png" alt="むちむちくん">
+      </div>
 
       <p class="down">いま思っていることを書いてください。甘く、ときに厳しく、返事をします</p>
 
@@ -28,15 +31,17 @@
         </div>
       </section>
 
-      <label for="form">メッセージ</label>
+      <label for="input">メッセージ</label>
       <form id="form" class="composer">
         <textarea
           id="input"
-          rows="1"
-          placeholder="メッセージを入力(Enterで送信 / Shift+Enterで改行)"
+          rows="5"
+          placeholder="今日あったこと、悩み、理想など・・・"
           autofocus
         ></textarea>
-        <button id="send" type="submit">送信</button>
+        <div class="send">
+          <span class="message">メッセージを入力(Enterで送信 / Shift+Enterで改行)</span><button id="send" type="submit">送信</button>
+        </div>
       </form>
     </div>
 
