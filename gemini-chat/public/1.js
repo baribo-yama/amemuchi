@@ -50,3 +50,16 @@ async function run() {
     save(state);
   }
 }
+
+
+const characters = [
+    "あめむち.png",
+    "毒舌デビルの現実説教スタンプ.png"
+];
+
+// 画像をランダムに選ぶ
+const randomIndex = Math.floor(Math.random() * characters.length);
+
+// 選んだ画像を表示する
+const characterImage = document.getElementById("characterImage");
+characterImage.src = characters[randomIndex];
