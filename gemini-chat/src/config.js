@@ -1,3 +1,4 @@
+
 import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
@@ -10,11 +11,23 @@ const int = (value, fallback) => {
   return Number.isFinite(n) && n > 0 ? n : fallback;
 };
 
-// システムプロンプトは prompts/system.txt を編集するだけで変えられる
-const systemPromptPath = path.join(rootDir, "prompts", "system.txt");
-const systemPrompt = fs.existsSync(systemPromptPath)
-  ? fs.readFileSync(systemPromptPath, "utf8").trim()
-  : "";
+// キャラクターごとのシステムプロンプトを読み込む
+const systemPromptPaths = {
+  ame: path.join(rootDir, "prompts", "ame.txt"),
+  muchi: path.join(rootDir, "prompts", "muchi.txt"),
+};
+
+const systemPrompts = {
+  ame: fs.existsSync(systemPromptPaths.ame)
+    ? fs.readFileSync(systemPromptPaths.ame, "utf8").trim()
+    : "",
+  muchi: fs.existsSync(systemPromptPaths.muchi)
+    ? fs.readFileSync(systemPromptPaths.muchi, "utf8").trim()
+    : "",
+};
+
+// 既存コードとの互換性を維持する
+const systemPrompt = systemPrompts.ame;
 
 export const config = {
   rootDir,
@@ -25,6 +38,7 @@ export const config = {
     model: process.env.GEMINI_MODEL ?? "gemini-3.5-flash-lite",
   },
   systemPrompt,
+  systemPrompts,
   chat: {
     maxHistoryMessages: int(process.env.MAX_HISTORY_MESSAGES, 20),
     maxMessageChars: int(process.env.MAX_MESSAGE_CHARS, 4000),
