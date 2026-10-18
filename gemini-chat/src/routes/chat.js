@@ -27,6 +27,9 @@ export function createChatRouter({ chatService }) {
       if (!res.writableEnded) controller.abort();
     });
 
+    // AIのストリーミングレスポンス（文字が少しずつ出る表現
+    // レスポンス文章が全て完成してから返す、のではなく確定している単語から返すようにしている
+    // キャッシュとバッファリングを貯めると返答が送れるのでオフにする
     res.writeHead(200, {
       "Content-Type": "text/event-stream; charset=utf-8",
       "Cache-Control": "no-cache, no-transform",
