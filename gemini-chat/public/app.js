@@ -7,6 +7,8 @@ const els = {
   form: document.getElementById("form"),
   input: document.getElementById("input"),
   newChat: document.getElementById("new-chat"),
+  logbox: document.getElementById("log-box"),
+  logbutton: document.getElementById("log-button"),
 };
 
 const state = load() ?? newState();
@@ -15,6 +17,11 @@ function autoResize() {
   els.input.style.height = "auto";
   els.input.style.height = `${els.input.scrollHeight}px`;
 }
+
+els.logbutton.addEventListener("click", (e) => {
+  els.logbox.hidden = !els.logbox.hidden;
+  console.log(state.messages);
+})
 
 els.form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -39,4 +46,15 @@ els.newChat.addEventListener("click", () => {
   Object.assign(state, newState());
   save(state);
   els.input.focus();
+});
+
+state.messages.forEach((m) => {
+  const item =document.createElement("div");
+  item.textContent = m.content;
+  item.style.top = Math.random() * 100 + "%";
+  item.style.left = Math.random() * 100 + "%";
+  item.style.animationDelay = - Math.random() * 4 + "s";
+  item.style.setProperty("--dx", (Math.random() - 0.5) * 65 + "px")
+  item.style.setProperty("--dy", (Math.random() - 0.5) * 65 + "px")
+  els.logbox.appendChild(item);
 });
