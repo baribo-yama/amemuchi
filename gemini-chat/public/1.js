@@ -24,8 +24,8 @@ function showCharacter(mode) {
 
   // 画像を切り替える
   characterImage.src = isMuchi
-    ? "./あめむち2.png"
-    : "./あめむち.png";
+    ? "./image/むちさん.png"
+    : "./image/あめさん.png";
 
   // 名前を切り替える
   const characterName = document.getElementById("characterName");
