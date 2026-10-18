@@ -1,73 +1,136 @@
-
 /* ===== 全体の設定 ===== */
 * {
     box-sizing: border-box;
 }
 
+:root {
+    --ink: #29243f;
+    --muted: #655f73;
+    --coral: #ff766f;
+    --lavender: #eee8ff;
+    --cream: #fffaf4;
+}
+
 body {
-    margin: 0;
     min-height: 100vh;
-    padding: 40px 20px;
+    margin: 0;
+    padding: 48px 20px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 24px;
+    gap: 28px;
 
     font-family: "Noto Sans JP", sans-serif;
-    color: #5D514D;
+    color: var(--ink);
 
-    background-color: #FAF7F2;
+    background:
+        radial-gradient(ellipse at 12% 18%, rgba(255, 205, 176, 0.55), transparent 32%),
+        radial-gradient(ellipse at 88% 82%, rgba(202, 190, 255, 0.5), transparent 34%),
+        linear-gradient(135deg, #fffaf4 0%, #f6f1ff 52%, #fff5f1 100%);
 }
 
 
 /* ===== カード全体 ===== */
 .card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
     width: 100%;
-    max-width: 850px;
-    min-height: 400px;
+    max-width: 980px;
+    min-height: 440px;
 
     display: flex;
     align-items: stretch;
-    gap: 32px;
+    gap: 36px;
 
-    padding: 36px;
+    padding: 32px;
 
-    background-color: #FFFFFF;
-    border: 1px solid #F0E6DE;
-    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
 
-    box-shadow: 0 8px 30px rgba(120, 95, 80, 0.07);
+    box-shadow:
+        0 24px 70px rgba(53, 38, 83, 0.12),
+        0 4px 14px rgba(53, 38, 83, 0.05);
+
+    backdrop-filter: blur(12px);
+}
+
+/* カード右上のアクセント */
+.card::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -115px;
+    right: -85px;
+
+    width: 260px;
+    height: 260px;
+
+    background: linear-gradient(135deg, #ffe0c9, #e7ddff);
+    border-radius: 50%;
+    opacity: 0.55;
 }
 
 
 /* ===== 左側：タイトルとキャラクター ===== */
 .card-left {
-    flex: 0 0 40%;
+    position: relative;
+    flex: 0 0 38%;
+    min-height: 370px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    padding: 24px 20px;
+    padding: 32px 24px;
 
-    background-color: #F8EDE8;
-    border-radius: 18px;
+    background:
+        radial-gradient(circle at 50% 55%, rgba(255, 255, 255, 0.9) 0 28%, transparent 29%),
+        linear-gradient(155deg, #fff0e8 0%, #f5eaff 100%);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 24px;
+}
+
+/* 小さなラベル */
+.card-left::before {
+    content: "TODAY'S CHARACTER";
+    margin-bottom: 14px;
+
+    color: #a18bac;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
 }
 
 
 /* タイトル */
 .card-title {
-    margin: 0 0 24px;
+    margin: 0 0 8px;
 
-    font-size: 22px;
-    font-weight: 600;
+    color: var(--ink);
+    font-size: 28px;
+    font-weight: 800;
     text-align: center;
-    line-height: 1.6;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+}
 
-    color: #8D6E63;
+/* タイトルの下線アクセント */
+.card-title::after {
+    content: "";
+    display: block;
+
+    width: 34px;
+    height: 4px;
+    margin: 10px auto 0;
+
+    background: var(--coral);
+    border-radius: 999px;
 }
 
 
@@ -75,11 +138,24 @@ body {
 .card-character {
     display: block;
 
-    width: 100%;
-    max-width: 220px;
-    height: 240px;
+    width: 170px;
+    max-width: 100%;
+    height: 220px;
+    margin-top: 14px;
 
     object-fit: contain;
+    filter: drop-shadow(0 12px 14px rgba(70, 48, 90, 0.16));
+
+    animation: character-float 4s ease-in-out infinite;
+}
+
+@keyframes character-float {
+    0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(1deg);
+    }
 }
 
 
@@ -91,96 +167,172 @@ body {
     display: flex;
     align-items: center;
 
-    padding: 24px 8px;
+    padding: 28px 20px;
 }
 
-
-/* 説明文 */
 #output {
+    position: relative;
     width: 100%;
     margin: 0;
+    padding-left: 22px;
 
-    font-size: 16px;
-    line-height: 2.1;
-    letter-spacing: 0.04em;
-
-    color: #665A55;
+    color: var(--muted);
+    font-size: 17px;
+    font-weight: 450;
+    line-height: 2.05;
+    letter-spacing: 0.045em;
 
     overflow-wrap: anywhere;
+}
+
+/* 説明文の左にコーラルのライン */
+#output::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    left: 0;
+
+    width: 4px;
+    background: linear-gradient(to bottom, var(--coral), #b7a1ff);
+    border-radius: 999px;
 }
 
 
 /* ===== 入力画面に戻るリンク ===== */
 a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 
-    padding: 12px 28px;
+    padding: 14px 30px;
 
-    color: #8D6E63;
-    background-color: #F1E5DC;
+    color: #fff;
+    background: linear-gradient(135deg, #ff8278, #f26779);
+    border: 0;
+    border-radius: 999px;
 
-    border: 1px solid #E9D8CC;
-    border-radius: 30px;
+    box-shadow: 0 8px 20px rgba(242, 103, 121, 0.28);
 
     font-size: 14px;
+    font-weight: 700;
     text-decoration: none;
+    letter-spacing: 0.04em;
 
     transition:
-        background-color 0.25s ease,
-        transform 0.25s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
 }
 
+a::before {
+    content: "←";
+    font-size: 16px;
+}
 
-/* マウスを乗せたとき */
 a:hover {
-    background-color: #E8D5C8;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(242, 103, 121, 0.36);
+    filter: saturate(1.08);
+}
+
+a:focus-visible {
+    outline: 3px solid #b7a1ff;
+    outline-offset: 4px;
 }
 
 
-/* ===== スマートフォン対応 ===== */
-@media (max-width: 600px) {
-
-    body {
-        padding: 24px 16px;
-    }
-
+/* ===== タブレット ===== */
+@media (max-width: 760px) {
     .card {
-        flex-direction: column;
-        gap: 20px;
-
-        min-height: auto;
-        padding: 20px;
-
-        border-radius: 20px;
+        gap: 24px;
+        padding: 24px;
     }
 
     .card-left {
-        flex: auto;
-        padding: 24px 16px;
-    }
-
-    .card-title {
-        margin-bottom: 16px;
-        font-size: 20px;
-    }
-
-    .card-character {
-        max-width: 180px;
-        height: 200px;
+        flex-basis: 40%;
     }
 
     .card-description {
-        padding: 12px 4px;
+        padding: 20px 8px;
     }
 
     #output {
         font-size: 15px;
-        line-height: 1.9;
     }
 }
-.card-character {
-    width: 150px;
-    height: auto;
-    object-fit: contain;
+
+
+/* ===== スマートフォン ===== */
+@media (max-width: 600px) {
+    body {
+        justify-content: flex-start;
+        padding: 24px 16px;
+        gap: 20px;
+    }
+
+    .card {
+        flex-direction: column;
+        gap: 18px;
+
+        min-height: auto;
+        padding: 16px;
+
+        border-radius: 24px;
+    }
+
+    .card::after {
+        top: -130px;
+        right: -120px;
+    }
+
+    .card-left {
+        flex: auto;
+        min-height: 280px;
+        padding: 22px 16px;
+
+        border-radius: 19px;
+    }
+
+    .card-left::before {
+        margin-bottom: 8px;
+    }
+
+    .card-title {
+        font-size: 23px;
+    }
+
+    .card-character {
+        width: 145px;
+        height: 175px;
+        margin-top: 8px;
+    }
+
+    .card-description {
+        padding: 12px 8px 16px;
+    }
+
+    #output {
+        padding-left: 16px;
+        font-size: 15px;
+        line-height: 1.9;
+    }
+
+    a {
+        padding: 13px 26px;
+    }
+}
+
+
+/* 動きを控えめにする設定が有効な場合 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
