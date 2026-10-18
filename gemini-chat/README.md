@@ -36,6 +36,7 @@ npm start                # → http://localhost:3000
 - Express（フレームワーク）
 - gemini-API
 - HTML, CSS, JavaScript
+- Render（デプロイ）
 
 ## 技術選定理由
 
@@ -43,7 +44,7 @@ npm start                # → http://localhost:3000
 - JSを基準に選んだので、情報が豊富でNode.jsのフレームワークとして最も普及しているExpressにした
 - AIチャットには、AIの出力を言葉が徐々にでてくる状態を表現するために通常のリクエスト１本につきレスポンつ一つのHTTP通信ではなく、サーバーからブラウザへ１本のHTTP通信で１方向にデータを流し続けられるSSE（Server-Sent-Events）を採用している
 - AIのAPIには無料枠が最も多いgemini-APIを採用
-
+- パソコンでnpm startした時と同じ形で動くので採用
 
 ## 構成
 
