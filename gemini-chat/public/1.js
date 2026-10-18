@@ -16,14 +16,25 @@ function getMode(messages) {
 }
 
 // 回答モードに合わせて画像を切り替える
+
 function showCharacter(mode) {
   if (!characterImage) return;
 
-  characterImage.src =
-    mode === "muchi"
-      ? "./あめむち2.png"
-      : "./あめむち.png";
+  const isMuchi = mode === "muchi";
+
+  // 画像を切り替える
+  characterImage.src = isMuchi
+    ? "./あめむち2.png"
+    : "./あめむち.png";
+
+  // 名前を切り替える
+  const characterName = document.getElementById("characterName");
+
+  if (characterName) {
+    characterName.textContent = isMuchi ? "むち" : "あめ";
+  }
 }
+
 
 // ページを開いたときの処理
 if (!state || !Array.isArray(state.messages)) {
