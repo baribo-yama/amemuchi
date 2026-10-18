@@ -447,3 +447,22 @@ body[data-character="muchi"] a:hover {
     transition-duration: 0.01ms !important;
   }
 }
+/* あめ：キャラクター後ろの白い丸をハートに */
+body[data-character="ame"] .card-left {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 160'%3E%3Cpath d='M90 145C77 134 22 100 22 58C22 32 40 17 61 17C75 17 85 25 90 38C95 25 105 17 119 17C140 17 158 32 158 58C158 100 103 134 90 145Z' fill='%23ffffff' fill-opacity='.84'/%3E%3C/svg%3E"),
+    linear-gradient(155deg, #fff3e5 0%, #f8e2e6 100%);
+  background-repeat: no-repeat;
+  background-position: center 55%, center;
+  background-size: 160px 145px, cover;
+}
+
+/* むち：キャラクター後ろの白い丸を三日月に */
+body[data-character="muchi"] .card-left {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 160'%3E%3Cpath d='M116 13C81 23 58 50 58 81C58 112 80 138 113 148C106 151 98 153 90 153C50 153 20 122 20 82C20 42 50 11 90 11C99 11 108 12 116 13Z' fill='%23ffffff' fill-opacity='.88'/%3E%3C/svg%3E"),
+    linear-gradient(155deg, #fff0e8 0%, #f5eaff 100%);
+  background-repeat: no-repeat;
+  background-position: center 55%, center;
+  background-size: 160px 145px, cover;
+}
