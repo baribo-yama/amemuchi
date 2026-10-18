@@ -466,3 +466,10 @@ body[data-character="muchi"] .card-left {
   background-position: center 55%, center;
   background-size: 160px 145px, cover;
 }
+.card-character {
+  transition: transform 0.25s ease;
+}
+
+.card-character:hover {
+  transform: translateY(-7px) rotate(-3deg) scale(1.05);
+}
