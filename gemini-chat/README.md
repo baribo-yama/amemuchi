@@ -1,4 +1,4 @@
-# Gemini Chat
+# AmeMuchi Chat
 
 Gemini API を使ったシンプルなチャットアプリです。
 フロントは HTML / CSS / JS、サーバーは Node.js (Express) で、**APIキーはサーバーにだけ置きます**。
@@ -29,6 +29,21 @@ npm start                # → http://localhost:3000
 - モデル名は `.env` の `GEMINI_MODEL` で変更できます(最新は [公式](https://ai.google.dev/gemini-api/docs/models) を確認)
 - 開発中は `npm run dev` でファイル変更時に自動再起動します
 - Node.js 20 以上が必要です
+
+## 使用技術
+
+- Node.js
+- Express（フレームワーク）
+- gemini-API
+- HTML, CSS, JavaScript
+
+## 技術選定理由
+
+- チームの技術レベルに合わせてHTML, JS, CSSを中心に開発すると決めていたので、サーバーサイドもjsで書けるNode.jsを使用
+- JSを基準に選んだので、情報が豊富でNode.jsのフレームワークとして最も普及しているExpressにした
+- AIチャットには、AIの出力を言葉が徐々にでてくる状態を表現するために通常のリクエスト１本につきレスポンつ一つのHTTP通信ではなく、サーバーからブラウザへ１本のHTTP通信で１方向にデータを流し続けられるSSE（Server-Sent-Events）を採用している
+- AIのAPIには無料枠が最も多いgemini-APIを採用
+
 
 ## 構成
 
