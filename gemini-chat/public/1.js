@@ -54,17 +54,14 @@ async function run() {
 
 
 
-
-const characters = [
-  "./あめむち.png",
-  "./あめむち2.png"
-];
-
 const characterImage = document.getElementById("characterImage");
 
+// サーバーから回答モードを受け取って画像を切り替える
+const mode = state?.mode ?? "ame";
+
 if (characterImage) {
-  // ランダムに２つの画像を返す
-  const randomIndex = Math.floor(Math.random() * characters.length);
-  console.log(randomIndex);
-  characterImage.src = characters[randomIndex];
+  characterImage.src =
+    mode === "muchi"
+      ? "./あめむち2.png"
+      : "./あめむち.png";
 }
