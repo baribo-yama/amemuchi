@@ -68,6 +68,7 @@ export function createChatService({ provider, logger, config }) {
       historyLength: messages.length,
       userMessage: messages.at(-1).content,
     });
+    console.log("今回のキャラクター:", mode);
 
     let reply = "";
 
