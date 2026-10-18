@@ -56,15 +56,15 @@ async function run() {
 
 
 const characters = [
-    "./あめむち.png",
-    "./あめむち2.png"
+  "./あめむち.png",
+  "./あめむち2.png"
 ];
 
 const characterImage = document.getElementById("characterImage");
 
 if (characterImage) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
-    console.log(randomIndex);
-    characterImage.src = characters[randomIndex];
+  // ランダムに２つの画像を返す
+  const randomIndex = Math.floor(Math.random() * characters.length);
+  console.log(randomIndex);
+  characterImage.src = characters[randomIndex];
 }
-
