@@ -1,4 +1,3 @@
-
 import { load, save, readEvents } from "./shared.js";
 
 const output = document.getElementById("output");
@@ -9,18 +8,20 @@ const last = state?.messages?.at(-1);
 // サーバー側と同じルールで回答モードを決める
 function getMode(messages) {
   const assistantCount = messages.filter(
-    (m) => m.role === "assistant"
+    (message) => message.role === "assistant"
   ).length;
 
   return assistantCount % 2 === 0 ? "ame" : "muchi";
 }
 
-// 回答モードに合わせて画像を切り替える
-
+// 回答モードに合わせて画像・名前・デザインを切り替える
 function showCharacter(mode) {
   if (!characterImage) return;
 
   const isMuchi = mode === "muchi";
+
+  // CSSの配色切り替えに使う
+  document.body.dataset.character = mode;
 
   // 画像を切り替える
   characterImage.src = isMuchi
@@ -35,18 +36,18 @@ function showCharacter(mode) {
   }
 }
 
-
 // ページを開いたときの処理
 if (!state || !Array.isArray(state.messages)) {
-  output.textContent = "会話データが見つかりません。最初の画面からやり直してください。";
+  output.textContent =
+    "会話データが見つかりません。最初の画面からやり直してください。";
 } else if (last?.role === "user") {
-  // 今から生成する回答のモードで画像を表示
+  // 今から生成する回答のモードで画像・デザインを表示
   showCharacter(getMode(state.messages));
   run();
 } else if (last?.role === "assistant") {
-  // 保存済みの最後の回答に対応する画像を表示
+  // 保存済みの最後の回答に対応する画像・デザインを表示
   const assistantCount = state.messages.filter(
-    (m) => m.role === "assistant"
+    (message) => message.role === "assistant"
   ).length;
 
   showCharacter((assistantCount - 1) % 2 === 0 ? "ame" : "muchi");
@@ -55,8 +56,8 @@ if (!state || !Array.isArray(state.messages)) {
 
 async function run() {
   let reply = "";
-
   let dots = 0;
+
   const tick = () => {
     output.textContent =
       "回答を生成中" + "。".repeat((dots++ % 3) + 1);
@@ -66,7 +67,7 @@ async function run() {
   const timer = setInterval(tick, 500);
 
   try {
-    const res = await fetch("/api/chat", {
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -75,14 +76,15 @@ async function run() {
       }),
     });
 
-    if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({}));
+
       throw new Error(
-        data.error ?? `サーバーエラー (HTTP ${res.status})`
+        data.error ?? `サーバーエラー (HTTP ${response.status})`
       );
     }
 
-    for await (const event of readEvents(res.body)) {
+    for await (const event of readEvents(response.body)) {
       if (event.type === "delta") {
         clearInterval(timer);
         reply += event.text;
@@ -97,11 +99,12 @@ async function run() {
         role: "assistant",
         content: reply,
       });
+
       save(state);
     }
-  } catch (err) {
+  } catch (error) {
     output.textContent =
-      err.message || "エラーが発生しました。";
+      error.message || "エラーが発生しました。";
   } finally {
     clearInterval(timer);
   }

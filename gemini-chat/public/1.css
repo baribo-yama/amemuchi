@@ -1,338 +1,449 @@
 /* ===== 全体の設定 ===== */
 * {
-    box-sizing: border-box;
-}
-
-:root {
-    --ink: #29243f;
-    --muted: #655f73;
-    --coral: #ff766f;
-    --lavender: #eee8ff;
-    --cream: #fffaf4;
+  box-sizing: border-box;
 }
 
 body {
-    min-height: 100vh;
-    margin: 0;
-    padding: 48px 20px;
+  position: relative;
+  isolation: isolate;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 20px;
 
-    font-family: "Noto Sans JP", sans-serif;
-    color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
 
-    background:
-        radial-gradient(ellipse at 12% 18%, rgba(255, 205, 176, 0.55), transparent 32%),
-        radial-gradient(ellipse at 88% 82%, rgba(202, 190, 255, 0.5), transparent 34%),
-        linear-gradient(135deg, #fffaf4 0%, #f6f1ff 52%, #fff5f1 100%);
+  font-family: "Noto Sans JP", sans-serif;
+  color: #5d514d;
+
+  background: #faf7f2;
+  transition:
+    background 0.35s ease,
+    color 0.35s ease;
 }
 
 
 /* ===== カード全体 ===== */
 .card {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
+  position: relative;
+  z-index: 1;
 
-    width: 100%;
-    max-width: 980px;
-    min-height: 440px;
+  width: 100%;
+  max-width: 850px;
+  min-height: 400px;
 
-    display: flex;
-    align-items: stretch;
-    gap: 36px;
+  display: flex;
+  align-items: stretch;
+  gap: 32px;
 
-    padding: 32px;
+  padding: 36px;
 
-    background: rgba(255, 255, 255, 0.88);
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    border-radius: 30px;
+  background-color: #fff;
+  border: 1px solid #f0e6de;
+  border-radius: 24px;
 
-    box-shadow:
-        0 24px 70px rgba(53, 38, 83, 0.12),
-        0 4px 14px rgba(53, 38, 83, 0.05);
+  box-shadow: 0 8px 30px rgba(120, 95, 80, 0.07);
 
-    backdrop-filter: blur(12px);
-}
-
-/* カード右上のアクセント */
-.card::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: -115px;
-    right: -85px;
-
-    width: 260px;
-    height: 260px;
-
-    background: linear-gradient(135deg, #ffe0c9, #e7ddff);
-    border-radius: 50%;
-    opacity: 0.55;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 
 /* ===== 左側：タイトルとキャラクター ===== */
 .card-left {
-    position: relative;
-    flex: 0 0 38%;
-    min-height: 370px;
+  flex: 0 0 40%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    padding: 32px 24px;
+  padding: 24px 20px;
 
-    background:
-        radial-gradient(circle at 50% 55%, rgba(255, 255, 255, 0.9) 0 28%, transparent 29%),
-        linear-gradient(155deg, #fff0e8 0%, #f5eaff 100%);
-    border: 1px solid rgba(255, 255, 255, 0.85);
-    border-radius: 24px;
-}
+  background: #f8ede8;
+  border-radius: 18px;
 
-/* 小さなラベル */
-.card-left::before {
-    content: "TODAY'S CHARACTER";
-    margin-bottom: 14px;
-
-    color: #a18bac;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.2em;
+  transition: background 0.35s ease;
 }
 
 
 /* タイトル */
 .card-title {
-    margin: 0 0 8px;
+  margin: 0 0 24px;
 
-    color: var(--ink);
-    font-size: 28px;
-    font-weight: 800;
-    text-align: center;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
-}
+  color: #8d6e63;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.6;
 
-/* タイトルの下線アクセント */
-.card-title::after {
-    content: "";
-    display: block;
-
-    width: 34px;
-    height: 4px;
-    margin: 10px auto 0;
-
-    background: var(--coral);
-    border-radius: 999px;
+  transition: color 0.35s ease;
 }
 
 
 /* キャラクター画像 */
 .card-character {
-    display: block;
+  display: block;
 
-    width: 170px;
-    max-width: 100%;
-    height: 220px;
-    margin-top: 14px;
+  width: 150px;
+  max-width: 100%;
+  height: auto;
 
-    object-fit: contain;
-    filter: drop-shadow(0 12px 14px rgba(70, 48, 90, 0.16));
-
-    animation: character-float 4s ease-in-out infinite;
-}
-
-@keyframes character-float {
-    0%, 100% {
-        transform: translateY(0) rotate(-1deg);
-    }
-    50% {
-        transform: translateY(-8px) rotate(1deg);
-    }
+  object-fit: contain;
 }
 
 
 /* ===== 右側：説明文 ===== */
 .card-description {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    padding: 28px 20px;
+  padding: 24px 8px;
 }
 
+
+/* 説明文 */
 #output {
-    position: relative;
-    width: 100%;
-    margin: 0;
-    padding-left: 22px;
+  width: 100%;
+  margin: 0;
 
-    color: var(--muted);
-    font-size: 17px;
-    font-weight: 450;
-    line-height: 2.05;
-    letter-spacing: 0.045em;
+  color: #665a55;
+  font-size: 16px;
+  line-height: 2.1;
+  letter-spacing: 0.04em;
 
-    overflow-wrap: anywhere;
-}
-
-/* 説明文の左にコーラルのライン */
-#output::before {
-    content: "";
-    position: absolute;
-    top: 5px;
-    bottom: 5px;
-    left: 0;
-
-    width: 4px;
-    background: linear-gradient(to bottom, var(--coral), #b7a1ff);
-    border-radius: 999px;
+  overflow-wrap: anywhere;
+  transition: color 0.35s ease;
 }
 
 
 /* ===== 入力画面に戻るリンク ===== */
 a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  position: relative;
+  z-index: 1;
 
-    padding: 14px 30px;
+  display: inline-block;
+  padding: 12px 28px;
 
-    color: #fff;
-    background: linear-gradient(135deg, #ff8278, #f26779);
-    border: 0;
-    border-radius: 999px;
+  color: #8d6e63;
+  background: #f1e5dc;
 
-    box-shadow: 0 8px 20px rgba(242, 103, 121, 0.28);
+  border: 1px solid #e9d8cc;
+  border-radius: 30px;
 
-    font-size: 14px;
-    font-weight: 700;
-    text-decoration: none;
-    letter-spacing: 0.04em;
+  font-size: 14px;
+  text-decoration: none;
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        filter 0.2s ease;
-}
-
-a::before {
-    content: "←";
-    font-size: 16px;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
 a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 26px rgba(242, 103, 121, 0.36);
-    filter: saturate(1.08);
-}
-
-a:focus-visible {
-    outline: 3px solid #b7a1ff;
-    outline-offset: 4px;
+  background: #e8d5c8;
+  transform: translateY(-2px);
 }
 
 
-/* ===== タブレット ===== */
-@media (max-width: 760px) {
-    .card {
-        gap: 24px;
-        padding: 24px;
-    }
+/* ==================================================
+   あめバージョン
+   淡いピンク・クリームのグラデーションと羽の装飾
+   ================================================== */
+body[data-character="ame"] {
+  color: #5d514d;
+  background:
+    radial-gradient(
+      ellipse at 12% 18%,
+      rgba(255, 199, 190, 0.5),
+      transparent 34%
+    ),
+    radial-gradient(
+      ellipse at 88% 82%,
+      rgba(255, 226, 211, 0.48),
+      transparent 36%
+    ),
+    linear-gradient(
+      135deg,
+      #fffaf2 0%,
+      #fff0ed 52%,
+      #fff5eb 100%
+    );
+}
 
-    .card-left {
-        flex-basis: 40%;
-    }
+/* あめ版の丸みのある手描き羽 */
+body[data-character="ame"]::before {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  inset: 0;
 
-    .card-description {
-        padding: 20px 8px;
-    }
+  pointer-events: none;
+  opacity: 0.72;
 
-    #output {
-        font-size: 15px;
-    }
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='150' viewBox='0 0 180 150' fill='none'%3E%3Cpath d='M133 111c-8 10-23 14-33 7-7 10-23 10-31 1-11 7-26 2-28-10-13 3-23-7-20-19-12-6-13-21-4-30-4-11 4-23 17-25 12-2 22 5 33 15l30 27c11 10 22 8 31 14 9 6 12 16 5 25-6 8-17 9-24 3-6-5-5-14 1-18 5-4 12-1 13 4 1 4-3 7-6 5' fill='%23fffaf7' fill-opacity='.42' stroke='%23d7a7ad' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' opacity='.8'/%3E%3Cpath d='M136 112c-6 7-16 10-24 7' stroke='%23c9bddf' stroke-width='1.2' stroke-linecap='round' opacity='.7'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='150' viewBox='0 0 180 150' fill='none'%3E%3Cg transform='translate(180 0) scale(-1 1)'%3E%3Cpath d='M133 111c-8 10-23 14-33 7-7 10-23 10-31 1-11 7-26 2-28-10-13 3-23-7-20-19-12-6-13-21-4-30-4-11 4-23 17-25 12-2 22 5 33 15l30 27c11 10 22 8 31 14 9 6 12 16 5 25-6 8-17 9-24 3-6-5-5-14 1-18 5-4 12-1 13 4 1 4-3 7-6 5' fill='%23fffaf7' fill-opacity='.42' stroke='%23d7a7ad' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' opacity='.8'/%3E%3Cpath d='M136 112c-6 7-16 10-24 7' stroke='%23c9bddf' stroke-width='1.2' stroke-linecap='round' opacity='.7'/%3E%3C/g%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-size: 150px 125px, 150px 125px;
+  background-position:
+    left 4% top 16%,
+    right 4% bottom 15%;
+}
+
+/* あめ版の小さなハートと星 */
+body[data-character="ame"]::after {
+  content: "♡     ✧          ♡";
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8vh 7vw;
+
+  pointer-events: none;
+  color: rgba(195, 133, 139, 0.65);
+  font-size: 22px;
+  letter-spacing: 0.7em;
+  white-space: pre;
+
+  background:
+    radial-gradient(circle, rgba(213, 161, 148, 0.62) 1.5px, transparent 2px)
+      18% 76% / 12px 12px no-repeat,
+    radial-gradient(circle, rgba(213, 161, 148, 0.62) 1.5px, transparent 2px)
+      82% 24% / 12px 12px no-repeat;
+}
+
+body[data-character="ame"] .card {
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 24px 70px rgba(110, 70, 67, 0.11),
+    0 4px 14px rgba(110, 70, 67, 0.05);
+}
+
+body[data-character="ame"] .card-left {
+  background:
+    radial-gradient(
+      circle at 50% 55%,
+      rgba(255, 255, 255, 0.84) 0 28%,
+      transparent 29%
+    ),
+    linear-gradient(155deg, #fff3e5 0%, #f8e2e6 100%);
+}
+
+body[data-character="ame"] .card-title {
+  color: #8d6e63;
+}
+
+body[data-character="ame"] #output {
+  color: #665a55;
+}
+
+body[data-character="ame"] a {
+  color: #80665b;
+  background: linear-gradient(135deg, #fff0df, #f4d9dc);
+  border-color: #ecd9cf;
+  box-shadow: 0 8px 20px rgba(141, 110, 99, 0.15);
+}
+
+body[data-character="ame"] a:hover {
+  background: linear-gradient(135deg, #fbe5d2, #efcbd3);
 }
 
 
-/* ===== スマートフォン ===== */
+/* ==================================================
+   むちバージョン
+   ピーチ・ラベンダーのグラデーションと羽の装飾
+   ================================================== */
+body[data-character="muchi"] {
+  color: #29243f;
+  background:
+    radial-gradient(
+      ellipse at 12% 18%,
+      rgba(255, 205, 176, 0.48),
+      transparent 34%
+    ),
+    radial-gradient(
+      ellipse at 88% 82%,
+      rgba(202, 190, 255, 0.42),
+      transparent 36%
+    ),
+    linear-gradient(
+      135deg,
+      #fffaf4 0%,
+      #f6f1ff 52%,
+      #fff5f1 100%
+    );
+}
+
+/* むち版：ハートを使わず、左右にコウモリの羽だけを配置 */
+body[data-character="muchi"]::before {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+
+  pointer-events: none;
+  opacity: 0.76;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 150' fill='none'%3E%3Cpath d='M157 106C139 98 127 89 113 82L101 76L94 57L83 73C69 62 53 53 39 51L47 70C31 64 18 62 7 64C17 78 28 88 42 94C27 98 16 105 8 115C28 119 45 116 60 107C69 117 82 119 94 109C105 118 118 117 126 107C137 112 148 111 157 106Z' fill='%23c7b5e4' fill-opacity='.62' stroke='%23a28bc8' stroke-width='2.6' stroke-linejoin='round'/%3E%3Cpath d='M25 74L44 81M39 62L55 76M51 96L64 93M76 76L88 89' stroke='%23eee8ff' stroke-width='2' stroke-linecap='round' opacity='.9'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 150' fill='none'%3E%3Cg transform='translate(180 0) scale(-1 1)'%3E%3Cpath d='M157 106C139 98 127 89 113 82L101 76L94 57L83 73C69 62 53 53 39 51L47 70C31 64 18 62 7 64C17 78 28 88 42 94C27 98 16 105 8 115C28 119 45 116 60 107C69 117 82 119 94 109C105 118 118 117 126 107C137 112 148 111 157 106Z' fill='%23c7b5e4' fill-opacity='.62' stroke='%23a28bc8' stroke-width='2.6' stroke-linejoin='round'/%3E%3Cpath d='M25 74L44 81M39 62L55 76M51 96L64 93M76 76L88 89' stroke='%23eee8ff' stroke-width='2' stroke-linecap='round' opacity='.9'/%3E%3C/g%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-size: 150px 125px, 150px 125px;
+  background-position:
+    left 4% top 16%,
+    right 4% bottom 15%;
+}
+
+/* むち版の小さな星と点。ハートはなし */
+body[data-character="muchi"]::after {
+  content: "✧     ·          ✧";
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8vh 7vw;
+
+  pointer-events: none;
+  color: rgba(164, 143, 202, 0.72);
+  font-size: 22px;
+  letter-spacing: 0.7em;
+  white-space: pre;
+
+  background:
+    radial-gradient(circle, rgba(164, 143, 202, 0.68) 1.5px, transparent 2px)
+      18% 76% / 12px 12px no-repeat,
+    radial-gradient(circle, rgba(164, 143, 202, 0.68) 1.5px, transparent 2px)
+      82% 24% / 12px 12px no-repeat;
+}
+
+body[data-character="muchi"] .card {
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 24px 70px rgba(53, 38, 83, 0.12),
+    0 4px 14px rgba(53, 38, 83, 0.05);
+}
+
+body[data-character="muchi"] .card-left {
+  background:
+    radial-gradient(
+      circle at 50% 55%,
+      rgba(255, 255, 255, 0.88) 0 28%,
+      transparent 29%
+    ),
+    linear-gradient(155deg, #fff0e8 0%, #f5eaff 100%);
+}
+
+body[data-character="muchi"] .card-title {
+  color: #514568;
+}
+
+body[data-character="muchi"] #output {
+  color: #655b71;
+}
+
+body[data-character="muchi"] a {
+  color: #fff;
+  background: linear-gradient(135deg, #ff8278, #f26779);
+  border-color: transparent;
+  box-shadow: 0 8px 20px rgba(242, 103, 121, 0.25);
+}
+
+body[data-character="muchi"] a:hover {
+  background: linear-gradient(135deg, #ff766f, #e85e78);
+  box-shadow: 0 11px 24px rgba(242, 103, 121, 0.32);
+}
+
+
+/* ===== スマートフォン対応 ===== */
 @media (max-width: 600px) {
-    body {
-        justify-content: flex-start;
-        padding: 24px 16px;
-        gap: 20px;
-    }
+  body {
+    justify-content: flex-start;
+    padding: 24px 16px;
+  }
 
-    .card {
-        flex-direction: column;
-        gap: 18px;
+  .card {
+    flex-direction: column;
+    gap: 20px;
 
-        min-height: auto;
-        padding: 16px;
+    min-height: auto;
+    padding: 20px;
 
-        border-radius: 24px;
-    }
+    border-radius: 20px;
+  }
 
-    .card::after {
-        top: -130px;
-        right: -120px;
-    }
+  .card-left {
+    flex: auto;
+    padding: 24px 16px;
+  }
 
-    .card-left {
-        flex: auto;
-        min-height: 280px;
-        padding: 22px 16px;
+  .card-title {
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
 
-        border-radius: 19px;
-    }
+  .card-character {
+    width: 145px;
+    max-width: 100%;
+  }
 
-    .card-left::before {
-        margin-bottom: 8px;
-    }
+  .card-description {
+    padding: 12px 4px;
+  }
 
-    .card-title {
-        font-size: 23px;
-    }
+  #output {
+    font-size: 15px;
+    line-height: 1.9;
+  }
 
-    .card-character {
-        width: 145px;
-        height: 175px;
-        margin-top: 8px;
-    }
+  /* スマホでは装飾を小さく、薄く表示 */
+  body[data-character="ame"]::before,
+  body[data-character="muchi"]::before {
+    opacity: 0.38;
+    background-size: 90px 75px, 90px 75px;
+    background-position:
+      left 1% top 12%,
+      right 1% bottom 10%;
+  }
 
-    .card-description {
-        padding: 12px 8px 16px;
-    }
-
-    #output {
-        padding-left: 16px;
-        font-size: 15px;
-        line-height: 1.9;
-    }
-
-    a {
-        padding: 13px 26px;
-    }
+  body[data-character="ame"]::after,
+  body[data-character="muchi"]::after {
+    opacity: 0.55;
+    font-size: 16px;
+    letter-spacing: 0.35em;
+    padding: 5vh 4vw;
+  }
 }
 
 
 /* 動きを控えめにする設定が有効な場合 */
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
