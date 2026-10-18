@@ -254,7 +254,6 @@ button.danger {
 }
 
 label {
-  padding-inline: 20px;
   margin-top: 20px;
 }
 
@@ -279,4 +278,36 @@ label {
   display: flex;
   align-items: center;
   padding-inline: 20px;
+}
+
+.log {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 20px;
+}
+
+#log-button {
+  color: var(--text);
+  border-color: #CFC6BC;
+}
+
+#log-box {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+#log-box div {
+  position: absolute;
+  opacity: 0.5;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translate(var(--dx), var(--dy)) ; }
+  100% { transform: translateY(0);  }
 }
