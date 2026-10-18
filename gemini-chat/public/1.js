@@ -56,8 +56,8 @@ async function run() {
 
 
 const characters = [
-  "./あめむち.png",
-  "./あめむち2.png"
+  "./image/あめさん.png",
+  "./image/むちさん.png"
 ];
 
 const characterImage = document.getElementById("characterImage");

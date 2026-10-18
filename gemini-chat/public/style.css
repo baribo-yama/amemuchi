@@ -40,7 +40,7 @@ body {
   color: var(--text);
   font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
   line-height: 1.6;
-  background: rgb(255,248,241);
+  background: rgb(255, 248, 241);
 }
 
 .app {
@@ -177,7 +177,7 @@ button.danger {
   display: none !important;
 }
 
-.lead{
+.lead {
   font-size: 57px;
   font-weight: 700;
   margin-top: 4%;
@@ -185,20 +185,21 @@ button.danger {
   font-family: "Zen Maru Gothic", sans-serif;
 }
 
-.down{
+.down {
   color: var(--muted);
   font-size: 17px;
   padding-inline: 20px;
 }
 
-.explanation{
+.explanation {
   display: flex;
   gap: 20px;
   font-family: "Zen Maru Gothic", sans-serif;
   padding-inline: 20px;
+  height: 30%;
 }
 
-.card{
+.card {
   flex: 1;
   font-size: 20px;
   font-weight: 600;
@@ -207,17 +208,40 @@ button.danger {
   border-radius: 18px;
 }
 
-.ame{
+.ame {
   color: rgb(122, 46, 46);
-  background: rgb(255,227,244);
+  background: rgb(255, 227, 244);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+    url(./image/ame.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
 }
 
-.muchi{
+.muchi {
   color: rgb(68, 68, 185);
-  background: rgb(228,227,247);
+  background: rgb(228, 227, 247);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+    url(./image/muchi.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
 }
 
-.note{
+.ame-img,
+.muchi-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+
+.note {
   font-size: 18px;
   font-weight: 400;
   margin-bottom: 0;
